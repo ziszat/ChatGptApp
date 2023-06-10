@@ -1,0 +1,146 @@
+[
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_iv_set_.png.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\iv_set_.png"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_setting.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\layout\\activity_setting.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\drawable_bg_ed_content.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\drawable\\bg_ed_content.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_introduction.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\layout\\activity_introduction.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_bg_index.jpg.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\bg_index.jpg"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\layout_dialog_item_reply.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\layout\\dialog_item_reply.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\xml_network_security_config.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\xml\\network_security_config.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\layout_item_chat_left.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\layout\\item_chat_left.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\drawable_bg_bt_send.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\drawable\\bg_bt_send.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\anim_translate_dialog_in.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\anim\\translate_dialog_in.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\drawable_bg_dialog_bt_reply.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\drawable\\bg_dialog_bt_reply.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_bg_chat_left.9.png.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\bg_chat_left.9.png"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\drawable_bg_dialog_reply.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\drawable\\bg_dialog_reply.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_iv_left_arrow_white.png.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\iv_left_arrow_white.png"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_iv_confirm.png.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\iv_confirm.png"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\anim_translate_dialog_out.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\anim\\translate_dialog_out.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_iv_photo.png.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\iv_photo.png"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\drawable_bg_dialog_ed_reply.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\drawable\\bg_dialog_ed_reply.xml"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_bg_chat_right.9.png.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\bg_chat_right.9.png"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_icon.png.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\icon.png"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "D:\\chatgpt-app\\ChatGPTAPP\\app\\build\\intermediates\\merged_res\\debug\\layout_item_chat_right.xml.flat",
+        "source": "D:\\chatgpt-app\\ChatGPTAPP\\app\\src\\main\\res\\layout\\item_chat_right.xml"
+    }
+]
