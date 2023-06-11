@@ -10,8 +10,8 @@ import com.example.chatgptapp.R
 import java.lang.IllegalArgumentException
 
 /**
- * @author :lwh
- * @date : 2023/3/13
+ * @author :czl, ljx
+ * @date : 2023/6/9
  */
 class ChatIndexAdapter(val msgList: List<Msg>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class LeftViewHolder(view: View) : RecyclerView.ViewHolder(view) {

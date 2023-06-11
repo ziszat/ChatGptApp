@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.TypedValue
 
 /**
- * @author :lwh
- * @date : 2023/3/17
+ * @author :czl, ljx
+ * @date : 2023/6/9
  */
 class DensityUtil {
     companion object {

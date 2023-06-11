@@ -19,7 +19,7 @@ import com.example.chatgptapp.adapter.ChatIndexAdapter
 import com.example.chatgptapp.ui.dialog.SendDialog
 import com.example.chatgptapp.utils.DensityUtil
 import com.example.chatgptapp.utils.SqlOprate
-import com.lwh.comm.utils.OkhttpUtil
+import com.czl.comm.utils.OkhttpUtil
 import kotlinx.android.synthetic.main.activity_introduction.*
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.Call

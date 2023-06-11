@@ -1,4 +1,4 @@
-package com.lwh.comm.utils
+package com.czl.comm.utils
 
 import com.google.gson.Gson
 import okhttp3.*

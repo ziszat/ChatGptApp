@@ -8,7 +8,7 @@ import android.util.Log
 import com.example.chatgptapp.sql.MyDatabaseHelper
 
 /**
- * @author :lwh
+ * @author : czl, ljx
  * @date : 2023/3/13
  */
 class SqlOprate {

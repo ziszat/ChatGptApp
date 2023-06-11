@@ -1,8 +1,8 @@
 package com.example.chatgptapp
 
 /**
- * @author :lwh
- * @date : 2023/3/13
+ * @author : czl, ljx
+ * @date : 2023/6/9
  */
 class Msg {
     companion object {

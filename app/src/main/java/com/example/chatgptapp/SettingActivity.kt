@@ -9,7 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import com.lwh.comm.utils.OkhttpUtil
+import com.czl.comm.utils.OkhttpUtil
 import kotlinx.android.synthetic.main.activity_introduction.*
 import kotlinx.android.synthetic.main.activity_introduction.iv_introduction_back
 import kotlinx.android.synthetic.main.activity_setting.*
