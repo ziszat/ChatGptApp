@@ -18,9 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chatgptapp.adapter.ChatIndexAdapter
 import com.example.chatgptapp.ui.dialog.SendDialog
 import com.example.chatgptapp.utils.DensityUtil
-import com.example.chatgptapp.utils.SqlOprate
+import com.example.chatgptapp.utils.SqlOperate
 import com.czl.comm.utils.OkhttpUtil
-import kotlinx.android.synthetic.main.activity_introduction.*
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.Call
 import okhttp3.Callback
@@ -28,7 +27,7 @@ import okhttp3.Response
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
-    var sqlOprate: SqlOprate? = null
+    var sqlOperate: SqlOperate? = null
     var list: MutableList<Msg> = mutableListOf()
 
     var handler: Handler? = null
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         con_content = findViewById(R.id.con_content)
-        sqlOprate = SqlOprate(this)
+        sqlOperate = SqlOperate(this)
         dataQuery()
 
         val sp = getSharedPreferences("openAiKey", Context.MODE_PRIVATE)
@@ -216,11 +215,11 @@ class MainActivity : AppCompatActivity() {
 
     public fun dataInsert(msg: Msg) {
         list.add(msg)
-        sqlOprate!!.insert(msg.type, msg.content.toString())
+        sqlOperate!!.insert(msg.type, msg.content.toString())
     }
 
     public fun dataQuery() {
-        var cursor = sqlOprate!!.query()
+        var cursor = sqlOperate!!.query()
         if (cursor!!.moveToFirst()) {
             do {
                 val id = cursor.getInt(cursor.getColumnIndex("id"))

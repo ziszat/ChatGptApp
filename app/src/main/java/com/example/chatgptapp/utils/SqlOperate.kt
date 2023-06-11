@@ -3,15 +3,13 @@ package com.example.chatgptapp.utils
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
-import android.util.Log
 import com.example.chatgptapp.sql.MyDatabaseHelper
 
 /**
  * @author : czl, ljx
  * @date : 2023/3/13
  */
-class SqlOprate {
+class SqlOperate {
     private var context: Context? = null
     var dbHelper: MyDatabaseHelper? = null
 
