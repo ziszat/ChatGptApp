@@ -52,18 +52,16 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
-        android:layout_weight="10"/>
+        android:layout_weight="10"
+        android:background="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#17181a"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:orientation="horizontal"
         android:paddingTop="5dp"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal">
+        android:paddingBottom="10dp">
 
         <LinearLayout
             android:id="@+id/ll_input"
@@ -81,16 +79,28 @@
                     android:id="@+id/bt_send"
                     android:layout_width="70dp"
                     android:layout_height="30dp"
+                    android:background="@drawable/bg_bt_send"
                     android:text="发送"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintHorizontal_bias="0.97"
-                    android:background="@drawable/bg_bt_send"/>
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/bt_voice_input"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/bt_voice_input"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@drawable/ic_mic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>
