@@ -29,10 +29,15 @@ import com.example.chatgptapp.ui.dialog.SendDialog;
 import com.example.chatgptapp.utils.DensityUtil;
 import com.example.chatgptapp.utils.OkhttpUtil;
 import com.example.chatgptapp.utils.SqlOperate;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         final Context context = this;
         SharedPreferences sp = getSharedPreferences("openAiKey", Context.MODE_PRIVATE);
         final String key = sp.getString("key", "");
-        OkhttpUtil.setApiKey(key);
+//        OkhttpUtil.setApiKey(key);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -134,13 +139,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         String str = response.body().string();
-                        str = str.replaceFirst("^(\n)+", "")
-                                .replace("```", "")
-                                .replaceFirst("^(\\{AI\\}\n)+", "")
-                                .replace("{AI}", "")
-                                .replace("{/AI}", "");
+//                        str = str.replaceFirst("^(\n)+", "")
+//                                .replace("```", "")
+//                                .replaceFirst("^(\\{AI\\}\n)+", "")
+//                                .replace("{AI}", "")
+//                                .replace("{/AI}", "");
+                        int startIndex = str.indexOf("\"content\":\"") + "\"content\":\"".length();
+                        int endIndex = str.indexOf("\"", startIndex);
+
+                        String content = str.substring(startIndex, endIndex);
+
                         list.remove(list.size() - 1);
-                        dataInsert(new Msg(str, Msg.TYPE_RECEIVED));
+                        dataInsert(new Msg(content, Msg.TYPE_RECEIVED));
                         Log.i("ResponeContent", str);
                         handler.sendEmptyMessage(0);
                     }

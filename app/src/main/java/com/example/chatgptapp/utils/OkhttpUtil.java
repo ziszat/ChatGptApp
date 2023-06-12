@@ -1,9 +1,16 @@
 package com.example.chatgptapp.utils;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.google.gson.Gson;
 import okhttp3.*;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okio.BufferedSink;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,44 +20,69 @@ public class OkhttpUtil {
     private String firstContent = "";
     private String received = "";
     private String newContent = "";
-    private String url = "https://ai.fakeopen.com/api/conversation";
-
-    public static String apiKey = "1";
+//    private String url = "https://ai.fakeopen.com/api/conversation";
+//
+//    public static String apiKey = "1";
+    private static final String apiKey = "pk-fCTNqrQIWZTAwypRpqfBCBajxDJPRPMZZLkraUxkxzHcmSJY";
+    private String url = "https://api.pawan.krd/v1/chat/completions";
+    private String model = "gpt-3.5-turbo";
+//    public String prompt = "Human: Hello\\nAI:";
+    public double temperature = 0.7;
+    public int maxTokens = 100;
+    public String contentSys = "Good Assistant";
+    public String contentUsr = "Who are you?";
 
     public void doPost(Callback newCallback) {
+        contentUsr = newContent;
+
         HttpLoggingInterceptor httpLoggingInterceptor =
                 new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor);
         OkHttpClient client = builder.build();
 
-        List<Map<String, String>> conversations = new ArrayList<>();
+//        List<Map<String, String>> conversations = new ArrayList<>();
+//
+//        if (!firstContent.isEmpty()) {
+//            conversations.add(Map.of("role", "user", "content", firstContent));
+//        }
+//        if (!received.isEmpty()) {
+//            conversations.add(Map.of("role", "assistant", "content", received));
+//        }
+//        if (!newContent.isEmpty()) {
+//            conversations.add(Map.of("role", "user", "content", newContent));
+//        }
+//        apiKey = apiKey.replace(":\"", "");
+//        RequestBody requestBody = RequestBody.create(
+//                MediaType.get("application/json"),
+//                new Gson().toJson(Map.of("conversations", conversations, "accessToken", apiKey, "apiReverseProxyUrl", url))
+//        );
+//
+//        Request request = new Request.Builder()
+//                .url(url)
+//                .post(requestBody)
+//                .build();
+        MediaType mediaType = MediaType.parse("application/json");
 
-        if (!firstContent.isEmpty()) {
-            conversations.add(Map.of("role", "user", "content", firstContent));
-        }
-        if (!received.isEmpty()) {
-            conversations.add(Map.of("role", "assistant", "content", received));
-        }
-        if (!newContent.isEmpty()) {
-            conversations.add(Map.of("role", "user", "content", newContent));
-        }
-        apiKey = apiKey.replace(":\"", "");
-        RequestBody requestBody = RequestBody.create(
-                MediaType.get("application/json"),
-                new Gson().toJson(Map.of("conversations", conversations, "accessToken", apiKey, "apiReverseProxyUrl", url))
-        );
+        String requestBodyJSON = "{ \n  \"model\": \"" + model + "\",\n \"max_tokens\": " + maxTokens + ",\n    \"messages\":\n [\n     {\n         \"role\": \"system\",\n         \"content\": \"" + contentSys + "\"\n       },\n        {\n         \"role\": \"user\",\n           \"content\": \"" + contentUsr + "\"\n       }\n ], \"temperature\": " + temperature + " \n}";
+
+        Log.i("Request body json", requestBodyJSON);
+
+        RequestBody requestBody = RequestBody.create(requestBodyJSON, mediaType);
 
         Request request = new Request.Builder()
                 .url(url)
                 .post(requestBody)
+                .addHeader("Authorization", "Bearer " + apiKey)
+                .addHeader("Content-Type", "application/json")
                 .build();
+
         client.newCall(request).enqueue(newCallback);
     }
 
-    public static void setApiKey(String apiKey) {
-        OkhttpUtil.apiKey = apiKey;
-    }
+//    public static void setApiKey(String apiKey) {
+//        OkhttpUtil.apiKey = apiKey;
+//    }
 
     public void setFirstContent(String firstContent) {
         this.firstContent = firstContent;
@@ -68,21 +100,17 @@ public class OkhttpUtil {
         this.url = url;
     }
 
-    public String getFirstContent() {
-        return firstContent;
-    }
+//    public String getFirstContent() {
+//        return firstContent;
+//    }
+//
+//    public String getNewContent() {
+//        return newContent;
+//    }
 
-    public String getNewContent() {
-        return newContent;
-    }
-
-    public static String getApiKey() {
-        return apiKey;
-    }
-
-    public String getReceived() {
-        return received;
-    }
+//    public String getReceived() {
+//        return received;
+//    }
 
     public String getUrl() {
         return url;

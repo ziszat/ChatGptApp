@@ -34,7 +34,7 @@ public class SettingActivity extends AppCompatActivity {
         iv_confirm.setOnClickListener(v -> {
             // 向 SharedPreferences 文件中写入数据
             SharedPreferences.Editor editor = sp.edit();
-            OkhttpUtil.apiKey = ed_key.getText().toString();
+//            OkhttpUtil.setApiKey(ed_key.getText().toString());
             editor.putString("key", ed_key.getText().toString());
             editor.apply();
             Toast.makeText(getApplicationContext(), "设置成功", Toast.LENGTH_SHORT).show();
