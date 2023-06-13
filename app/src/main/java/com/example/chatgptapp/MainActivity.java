@@ -19,6 +19,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText ed_reply;
 
     private RecyclerView recyclerView;
+
+    private boolean ipConfig = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +132,22 @@ public class MainActivity extends AppCompatActivity {
                 chatIndexAdapter.notifyDataSetChanged();
                 recyclerView.smoothScrollToPosition(chatIndexAdapter.getItemCount() - 1);
 
+                if (!ipConfig) {
+                    okhttpUtil.ipConfig(new Callback() {
+                        @Override
+                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                            handler.sendEmptyMessage(0);
+                        }
+
+                        @Override
+                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                            String str = response.body().string();
+                            Log.i("IP Response", str);
+                            handler.sendEmptyMessage(0);
+                        }
+                    });
+                    ipConfig = true;
+                }
                 okhttpUtil.doPost(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -139,19 +159,20 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         String str = response.body().string();
+                        Log.i("Response Content", str);
 //                        str = str.replaceFirst("^(\n)+", "")
 //                                .replace("```", "")
 //                                .replaceFirst("^(\\{AI\\}\n)+", "")
 //                                .replace("{AI}", "")
 //                                .replace("{/AI}", "");
                         int startIndex = str.indexOf("\"content\":\"") + "\"content\":\"".length();
-                        int endIndex = str.indexOf("\"", startIndex);
+                        int endIndex = str.indexOf(",\"role", startIndex) - 1;
 
                         String content = str.substring(startIndex, endIndex);
 
                         list.remove(list.size() - 1);
                         dataInsert(new Msg(content, Msg.TYPE_RECEIVED));
-                        Log.i("ResponeContent", str);
+//                        Log.i("ResponeContent", str);
                         handler.sendEmptyMessage(0);
                     }
                 });
