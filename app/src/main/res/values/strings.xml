@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ChatGptApp</string>
     <string name="start_speech_to_text">Start Speaking</string>
+    <string name="search_hint">Enter the words</string>
 </resources>

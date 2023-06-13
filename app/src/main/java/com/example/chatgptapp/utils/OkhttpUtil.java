@@ -27,13 +27,15 @@ public class OkhttpUtil {
     private String url = "https://api.pawan.krd/v1/chat/completions";
     private String model = "gpt-3.5-turbo";
 //    public String prompt = "Human: Hello\\nAI:";
-    public double temperature = 0.7;
-    public int maxTokens = 100;
-    public String contentSys = "Good Assistant";
-    public String contentUsr = "Who are you?";
+    private double temperature = 0.7;
+    private int maxTokens = 100;
+    private String contentSys = "Good Assistant";
+    private String contentUsr = "Who are you?";
+
+
+
 
     public void doPost(Callback newCallback) {
-        contentUsr = newContent;
 
         HttpLoggingInterceptor httpLoggingInterceptor =
                 new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
@@ -96,23 +98,11 @@ public class OkhttpUtil {
         this.received = received;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setContentUsr(String contentUsr) {
+        this.contentUsr = contentUsr;
     }
 
-//    public String getFirstContent() {
-//        return firstContent;
-//    }
-//
-//    public String getNewContent() {
-//        return newContent;
-//    }
-
-//    public String getReceived() {
-//        return received;
-//    }
-
-    public String getUrl() {
-        return url;
+    public String getContentUsr() {
+        return contentUsr;
     }
 }

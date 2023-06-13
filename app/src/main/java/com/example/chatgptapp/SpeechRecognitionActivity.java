@@ -56,8 +56,7 @@ public class SpeechRecognitionActivity extends AppCompatActivity {
 
         if(isRecognitionAvailable(getApplicationContext())){
 
-            intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS,true);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"zh-CN");
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 
         }else{
             Toast.makeText(getApplicationContext(),
@@ -91,15 +90,6 @@ public class SpeechRecognitionActivity extends AppCompatActivity {
             Log.d("SpeechRecognition", "Speech recognition failed");
         }
 
-        if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
-            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-            // Process the recognized speech result
-            String recognizedText = result.get(0);
-            // Do something with the recognized text
-
-            // For example, display the recognized text in a TextView
-            textView.setText(recognizedText);
-        }
     }
 }
