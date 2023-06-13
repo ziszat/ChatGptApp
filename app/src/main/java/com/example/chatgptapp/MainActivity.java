@@ -50,6 +50,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+// TODO: chat markdown
+// TODO: main page, select prompt
 public class MainActivity extends AppCompatActivity {
 
 
@@ -74,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         init();
 
-        SpeechToText speechToText=new SpeechToText(findViewById(R.id.search_input),findViewById(R.id.bt_voice_input));
-
+        SpeechToText speechToText=new SpeechToText(findViewById(R.id.search_input),findViewById(R.id.bt_voice_input),this);
 
 
         findViewById(R.id.search_input).setOnKeyListener(new View.OnKeyListener() {
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        findViewById(R.id.bt_send).setOnClickListener(v -> show());
         findViewById(R.id.ll_input).setOnClickListener(v -> show());
         findViewById(R.id.iv_photo).setOnClickListener(v -> startActivity(new Intent(this, IntroductionActivity.class)));
         findViewById(R.id.iv_set).setOnClickListener(v -> startActivity(new Intent(this, SettingActivity.class)));
@@ -135,12 +136,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void show(){
 
-        show("");
-    }
-
-    private void show(String sendMsg) {
+    private void show() {
 
         Context context=getApplicationContext();
         View contentView = LayoutInflater.from(context).inflate(R.layout.dialog_item_reply, null);
@@ -153,84 +150,7 @@ public class MainActivity extends AppCompatActivity {
         params.bottomMargin = DensityUtil.dp2px(context, 8f);
         contentView.setLayoutParams(params);
 
-        bt_reply.setOnClickListener(v -> {
-            if (!ed_reply.getText().toString().isEmpty()) {
-                String content = ed_reply.getText().toString();
-                OkhttpUtil okhttpUtil = new OkhttpUtil();
-                dataInsert(new Msg(content, Msg.TYPE_SENT));
-
-                String reply = "";
-                for (Msg msg : list) {
-                    if (msg.getType() == Msg.TYPE_RECEIVED) {
-                        reply = msg.getContent();
-                        break;
-                    }
-                }
-
-                if (list.size() >= 3) {
-                    okhttpUtil.setFirstContent(list.get(list.size() - 3).getContent());
-                    okhttpUtil.setNewContent(content);
-                } else {
-                    okhttpUtil.setFirstContent(content);
-                    okhttpUtil.setNewContent("");
-                }
-                okhttpUtil.setReceived(reply);
-
-                list.add(new Msg("正在加载，请等待......", Msg.TYPE_RECEIVED));
-                chatIndexAdapter.notifyDataSetChanged();
-                recyclerView.smoothScrollToPosition(chatIndexAdapter.getItemCount() - 1);
-
-                if (!ipConfig) {
-                    okhttpUtil.ipConfig(new Callback() {
-                        @Override
-                        public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                            handler.sendEmptyMessage(0);
-                        }
-
-                        @Override
-                        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                            String str = response.body().string();
-                            Log.i("IP Response", str);
-                            handler.sendEmptyMessage(0);
-                        }
-                    });
-                    ipConfig = true;
-                }
-                okhttpUtil.doPost(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        list.remove(list.size() - 1);
-                        dataInsert(new Msg("AI回复失败，请重试......", Msg.TYPE_RECEIVED));
-                        handler.sendEmptyMessage(0);
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        String str = response.body().string();
-                        Log.i("Response Content", str);
-//                        str = str.replaceFirst("^(\n)+", "")
-//                                .replace("```", "")
-//                                .replaceFirst("^(\\{AI\\}\n)+", "")
-//                                .replace("{AI}", "")
-//                                .replace("{/AI}", "");
-                        int startIndex = str.indexOf("\"content\":\"") + "\"content\":\"".length();
-                        int endIndex = str.indexOf(",\"role", startIndex) - 1;
-
-                        String content = str.substring(startIndex, endIndex);
-
-                        list.remove(list.size() - 1);
-                        dataInsert(new Msg(content, Msg.TYPE_RECEIVED));
-//                        Log.i("ResponeContent", str);
-                        handler.sendEmptyMessage(0);
-                    }
-                });
-            }
-
-            Log.i("dialog", "关闭输入法");
-            InputMethodManager inputMgr = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMgr.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
-            bottomDialog.dismiss();
-        });
+        bt_reply.setOnClickListener(v -> sendMsg(ed_reply.getText().toString()));
 
         bottomDialog.setCanceledOnTouchOutside(true);
         bottomDialog.getWindow().setGravity(Gravity.BOTTOM);
@@ -239,7 +159,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void sendMsg(String text){
+    public void sendMsg(String text){
+
+
+        Log.d("sendMsg",text);
 
         if (!text.isEmpty()) {
             OkhttpUtil okhttpUtil = new OkhttpUtil();
@@ -252,9 +175,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
             }
-            if (!Objects.equals(text, "")){
-                okhttpUtil.setContentUsr(text);
-            }
+
             if (list.size() >= 3) {
                 okhttpUtil.setFirstContent(list.get(list.size() - 3).getContent());
                 okhttpUtil.setNewContent(text);
@@ -268,6 +189,22 @@ public class MainActivity extends AppCompatActivity {
             chatIndexAdapter.notifyDataSetChanged();
             recyclerView.smoothScrollToPosition(chatIndexAdapter.getItemCount() - 1);
 
+            if (!ipConfig) {
+                okhttpUtil.ipConfig(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        handler.sendEmptyMessage(0);
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        String str = response.body().string();
+                        Log.i("IP Response", str);
+                        handler.sendEmptyMessage(0);
+                    }
+                });
+                ipConfig = true;
+            }
             okhttpUtil.doPost(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
@@ -279,19 +216,20 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     String str = response.body().string();
+                    Log.i("Response Content", str);
 //                        str = str.replaceFirst("^(\n)+", "")
 //                                .replace("```", "")
 //                                .replaceFirst("^(\\{AI\\}\n)+", "")
 //                                .replace("{AI}", "")
 //                                .replace("{/AI}", "");
                     int startIndex = str.indexOf("\"content\":\"") + "\"content\":\"".length();
-                    int endIndex = str.indexOf("\"", startIndex);
+                    int endIndex = str.indexOf(",\"role", startIndex) - 1;
 
                     String content = str.substring(startIndex, endIndex);
 
                     list.remove(list.size() - 1);
                     dataInsert(new Msg(content, Msg.TYPE_RECEIVED));
-                    Log.i("ResponeContent", str);
+//                        Log.i("ResponeContent", str);
                     handler.sendEmptyMessage(0);
                 }
             });

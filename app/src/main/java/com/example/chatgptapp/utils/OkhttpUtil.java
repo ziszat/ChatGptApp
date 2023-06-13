@@ -56,6 +56,9 @@ public class OkhttpUtil {
 
     public void doPost(Callback newCallback) {
 
+
+        contentUsr=newContent;
+
         HttpLoggingInterceptor httpLoggingInterceptor =
                 new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
@@ -88,7 +91,7 @@ public class OkhttpUtil {
 
         String requestBodyJSON = "{ \n  \"model\": \"" + model + "\",\n \"max_tokens\": " + maxTokens + ",\n    \"messages\":\n [\n     {\n         \"role\": \"system\",\n         \"content\": \"" + contentSys + "\"\n       },\n        {\n         \"role\": \"user\",\n           \"content\": \"" + contentUsr + "\"\n       }\n ], \"temperature\": " + temperature + " \n}";
 
-//        Log.i("Request body json", requestBodyJSON);
+        Log.i("Request body json", requestBodyJSON);
         RequestBody requestBody = RequestBody.create(requestBodyJSON, mediaType);
 
         Request request = new Request.Builder()
@@ -98,6 +101,7 @@ public class OkhttpUtil {
                 .addHeader("Content-Type", "application/json")
                 .build();
 
+//        Log.d("Post a msg ",requestBody.toString());
         client.newCall(request).enqueue(newCallback);
     }
 
@@ -109,9 +113,7 @@ public class OkhttpUtil {
         this.firstContent = firstContent;
     }
 
-    public void setNewContent(String newContent) {
-        this.newContent = newContent;
-    }
+    public void setNewContent(String newContent) {this.newContent = newContent; }
 
     public void setReceived(String received) {
         this.received = received;

@@ -84,6 +84,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <Button
+                    android:id="@+id/bt_send"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="48dp"
+                    android:background="@drawable/bg_bt_send"
+                    android:text="发送"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.47" />
 
                 <Button
                     android:id="@+id/bt_voice_input"

@@ -21,18 +21,23 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
+
+// TODO: add the long press and end
+// TODO: fix the send button
 public class SpeechToText  {
 
     private static final int SilenceTimeOut = 3000;
+    private MainActivity activity;
 
     private TextInputEditText text;
 
     private Button button;
 
-    public SpeechToText(TextInputEditText text,Button button){
+    public SpeechToText(TextInputEditText text,Button button,MainActivity activity){
 
         this.text=text;
         this.button=button;
+        this.activity=activity;
     }
 
     public void checkPermissionAndStartSpeechRecognition(Activity activity) {
@@ -125,7 +130,7 @@ public class SpeechToText  {
                     speechRecognizer.cancel();
                     speechRecognizer.destroy();
                     button.setBackgroundColor(Color.rgb(200,200,200));
-
+                     
                     Log.d("SpeechRecognition", "Speech recognition end: SILENCE TIMEOUT");
 
                 } else {
