@@ -17,7 +17,7 @@ public class IntroductionActivity extends AppCompatActivity {
 
         TextView tv_kaiyuan = findViewById(R.id.tv_kaiyuan);
         tv_kaiyuan.setOnClickListener(v -> {
-            Uri webpage = Uri.parse("https://github.com/CatOfSilence/ChatGPTAPP"); // 定义需要跳转的网页地址
+            Uri webpage = Uri.parse("https://github.com/ziszat/ChatGptTApp"); // 定义需要跳转的网页地址
             Intent intent = new Intent(Intent.ACTION_VIEW, webpage); // 创建跳转浏览器的意图
             if (intent.resolveActivity(getPackageManager()) != null) { // 检查是否有可用的浏览器应用
                 startActivity(intent); // 执行跳转
