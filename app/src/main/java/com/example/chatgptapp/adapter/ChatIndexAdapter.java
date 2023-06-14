@@ -4,6 +4,8 @@ package com.example.chatgptapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,7 +49,7 @@ public class ChatIndexAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         if (holder instanceof LeftViewHolder) {
             LeftViewHolder leftViewHolder = (LeftViewHolder) holder;
-            leftViewHolder.leftMsg.setText(msg.getContent());
+            leftViewHolder.leftMsg.setText(msg.getContent().replace("\\n", "\n"));
         } else if (holder instanceof RightViewHolder) {
             RightViewHolder rightViewHolder = (RightViewHolder) holder;
             rightViewHolder.rightMsg.setText(msg.getContent());

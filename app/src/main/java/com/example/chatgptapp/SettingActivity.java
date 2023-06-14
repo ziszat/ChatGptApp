@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.chatgptapp.utils.OkhttpUtil;
 
 public class SettingActivity extends AppCompatActivity {
-    private String[] starArray = {"gtp-3.5-turbo", "text-davinci-003"};
+    private String[] modelArray = {"gtp-3.5-turbo", "text-davinci-003"};
     private String model = "";
     private double temperature = 0.7;
     private int maxToken = 1000;
@@ -29,7 +29,7 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
 
         // 获取 SharedPreferences 对象，参数 "mySP" 表示 SharedPreferences 文件的名称
-        SharedPreferences sp = getSharedPreferences("openAiKey", Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("openAi Setting", Context.MODE_PRIVATE);
 
         // 从 SharedPreferences 文件中读取数据
         String key = sp.getString("key", "");
@@ -61,6 +61,8 @@ public class SettingActivity extends AppCompatActivity {
 
         //temperature
         SeekBar temp_bar = findViewById(R.id.seekBar);
+        int temp = sp.getInt("temperature", 7);
+        temp_bar.setProgress(temp);
         temp_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -74,6 +76,8 @@ public class SettingActivity extends AppCompatActivity {
 
         //max token
         SeekBar tokenBar = findViewById(R.id.maxToken);
+        int token = sp.getInt("maxToken", 5);
+        tokenBar.setProgress(token);
         tokenBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -88,9 +92,14 @@ public class SettingActivity extends AppCompatActivity {
         //confirm
         Button saveSetting = findViewById(R.id.confirm_others);
         saveSetting.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = sp.edit();
             OkhttpUtil.setModel(model);
             OkhttpUtil.setTemperature(temperature);
             OkhttpUtil.setMaxTokens(maxToken);
+            int v1 = (int)temperature * 10;
+            editor.putInt("temperature", v1);
+            editor.putInt("maxToken", (int) maxToken/500);
+            editor.apply();
             Toast.makeText(getApplicationContext(), "保存成功", Toast.LENGTH_SHORT).show();
         });
 
@@ -100,7 +109,7 @@ public class SettingActivity extends AppCompatActivity {
 
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            model = starArray[i];
+            model = modelArray[i];
         }
 
         @Override
