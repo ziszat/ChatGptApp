@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_chat"
+        android:title="聊天"
+        android:icon="@drawable/ic_chat" />
+
+    <item
+        android:id="@+id/nav_app"
+        android:title="应用"
+        android:icon="@drawable/ic_app" />
+
+    <item
+        android:id="@+id/nav_myself"
+        android:title="我的"
+        android:icon="@drawable/ic_myself" />
+</menu>

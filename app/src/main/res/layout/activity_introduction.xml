@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#17181a">
+        android:background="@color/design_default_color_primary">
 
         <ImageView
             android:id="@+id/iv_introduction_back"
@@ -24,17 +24,16 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开发者"
-            android:textColor="#fff"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/iv_introduction_back"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintLeft_toRightOf="@id/iv_introduction_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="关于我们"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_introduction_back" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,19 +76,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="5dp"
             />
-        <TextView
-            android:id="@+id/tv_api"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Api Key获取方式：\n1. 加入Discord服务器：PawanOsman\n2. 进入`#Bot`频道并发送`/key`\n命令以获取你个人的Api Key\n3. 将你的Api Key在应用中设置"
-            android:textSize="16sp"
-            android:textColor="#3F51B5"
-            app:layout_constraintVertical_bias="0.99"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintBottom_toTopOf="@id/tv_kaiyuan"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            />
+
         <TextView
             android:id="@+id/tv_kaiyuan"
             android:layout_width="wrap_content"
@@ -104,5 +91,5 @@
             app:layout_constraintRight_toRightOf="parent"
             />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>2
 </LinearLayout>

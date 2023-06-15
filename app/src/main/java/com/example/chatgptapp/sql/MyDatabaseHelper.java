@@ -1,9 +1,10 @@
 package com.example.chatgptapp.sql;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.chatgptapp.MainActivity;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE = "CREATE TABLE chatList ("
@@ -11,8 +12,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             + "type INTEGER, "
             + "content TEXT)";
 
-    public MyDatabaseHelper(Context context, String name, int version) {
-        super(context, name, null, version);
+    public MyDatabaseHelper( String name, int version) {
+        super(MainActivity.Instance.getApplicationContext(), name, null, version);
     }
 
     @Override

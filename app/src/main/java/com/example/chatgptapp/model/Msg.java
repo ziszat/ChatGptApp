@@ -1,4 +1,4 @@
-package com.example.chatgptapp;
+package com.example.chatgptapp.model;
 
 public class Msg {
     public static final int TYPE_RECEIVED = 0;

@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -27,13 +26,13 @@ import java.util.ArrayList;
 public class SpeechToText  {
 
     private static final int SilenceTimeOut = 3000;
-    private MainActivity activity;
+    private ChatView activity;
 
     private TextInputEditText text;
 
     private Button button;
 
-    public SpeechToText(TextInputEditText text,Button button,MainActivity activity){
+    public SpeechToText(TextInputEditText text, Button button, ChatView activity){
 
         this.text=text;
         this.button=button;

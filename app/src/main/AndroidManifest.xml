@@ -13,12 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatGptApp" >
-        <activity
-            android:name=".SettingActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SpeechRecognitionActivity"
-            android:exported="true" />
+
 
         <meta-data
             android:name="com.google.android.actions"
@@ -36,10 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".IntroductionActivity"
-            android:exported="true"
-            android:screenOrientation="fullSensor" />
+
+
     </application>
 
 </manifest>

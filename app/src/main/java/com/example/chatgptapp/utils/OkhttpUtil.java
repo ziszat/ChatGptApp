@@ -2,31 +2,24 @@ package com.example.chatgptapp.utils;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.google.gson.Gson;
-import okhttp3.*;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
-import okio.BufferedSink;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class OkhttpUtil {
     private String firstContent = "";
     private String received = "";
     private String newContent = "";
-//    private String url = "https://ai.fakeopen.com/api/conversation";
+    //    private String url = "https://ai.fakeopen.com/api/conversation";
 //
 //    public static String apiKey = "1";
     private static String apiKey = "pk-fCTNqrQIWZTAwypRpqfBCBajxDJPRPMZZLkraUxkxzHcmSJY";
     private String url = "https://api.pawan.krd/v1/chat/completions";
     private static String model = "gpt-3.5-turbo";
-//    public String prompt = "Human: Hello\\nAI:";
+    //    public String prompt = "Human: Hello\\nAI:";
     private static double temperature = 0.7;
     private static int maxTokens = 1000;
     private String contentSys = "Good Assistant";
@@ -53,7 +46,7 @@ public class OkhttpUtil {
     public void doPost(Callback newCallback) {
 
 
-        contentUsr=newContent;
+        contentUsr = newContent;
 
         HttpLoggingInterceptor httpLoggingInterceptor =
                 new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
@@ -61,31 +54,11 @@ public class OkhttpUtil {
                 .addInterceptor(httpLoggingInterceptor);
         OkHttpClient client = builder.build();
 
-//        List<Map<String, String>> conversations = new ArrayList<>();
-//
-//        if (!firstContent.isEmpty()) {
-//            conversations.add(Map.of("role", "user", "content", firstContent));
-//        }
-//        if (!received.isEmpty()) {
-//            conversations.add(Map.of("role", "assistant", "content", received));
-//        }
-//        if (!newContent.isEmpty()) {
-//            conversations.add(Map.of("role", "user", "content", newContent));
-//        }
-//        apiKey = apiKey.replace(":\"", "");
-//        RequestBody requestBody = RequestBody.create(
-//                MediaType.get("application/json"),
-//                new Gson().toJson(Map.of("conversations", conversations, "accessToken", apiKey, "apiReverseProxyUrl", url))
-//        );
-//
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .post(requestBody)
-//                .build();
-
         MediaType mediaType = MediaType.parse("application/json");
 
-        String requestBodyJSON = "{ \n  \"model\": \"" + model + "\",\n \"max_tokens\": " + maxTokens + ",\n    \"messages\":\n [\n     {\n         \"role\": \"system\",\n         \"content\": \"" + contentSys + "\"\n       },\n        {\n         \"role\": \"user\",\n           \"content\": \"" + contentUsr + "\"\n       }\n ], \"temperature\": " + temperature + " \n}";
+        String requestBodyJSON = "{ \n  \"model\": \"" + model
+                + "\",\n \"max_tokens\": " + maxTokens
+                + ",\n    \"messages\":\n [\n     {\n         \"role\": \"system\",\n         \"content\": \"" + contentSys + "\"\n       },\n        {\n         \"role\": \"user\",\n           \"content\": \"" + contentUsr + "\"\n       }\n ], \"temperature\": " + temperature + " \n}";
 
         Log.i("Request body json", requestBodyJSON);
         RequestBody requestBody = RequestBody.create(requestBodyJSON, mediaType);
@@ -109,7 +82,9 @@ public class OkhttpUtil {
         this.firstContent = firstContent;
     }
 
-    public void setNewContent(String newContent) {this.newContent = newContent; }
+    public void setNewContent(String newContent) {
+        this.newContent = newContent;
+    }
 
     public void setReceived(String received) {
         this.received = received;

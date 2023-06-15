@@ -1,19 +1,16 @@
 package com.example.chatgptapp.utils;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.chatgptapp.sql.MyDatabaseHelper;
 
 public class SqlOperate {
-    private Context context;
     private MyDatabaseHelper dbHelper;
 
-    public SqlOperate(Context context) {
-        this.context = context;
-        dbHelper = new MyDatabaseHelper(context, "database.db", 1);
+    public SqlOperate() {
+        dbHelper = new MyDatabaseHelper("database.db", 1);
     }
 
     /**

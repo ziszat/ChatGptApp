@@ -4,14 +4,12 @@ package com.example.chatgptapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.chatgptapp.Msg;
+import com.example.chatgptapp.model.Msg;
 import com.example.chatgptapp.R;
 
 import java.util.List;
