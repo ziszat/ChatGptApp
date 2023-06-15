@@ -36,7 +36,7 @@ public class SpeechRecognitionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speechtext);
 
-//        ArrayList<String> supportedLanguages = new ArrayList<>( Arrays.asList(RecognizerIntent.getVoiceDetailsIntent(this).getStringArrayListExtra(RecognizerIntent.EXTRA_SUPPORTED_LANGUAGES)));
+//        ArrayLimainst<String> supportedLanguages = new ArrayList<>( Arrays.asList(RecognizerIntent.getVoiceDetailsIntent(this).getStringArrayListExtra(RecognizerIntent.EXTRA_SUPPORTED_LANGUAGES)));
         Log.d("Supported Languages", Locale.getDefault().toString());
         ;
         button = findViewById(R.id.btn_speech_to_text);
