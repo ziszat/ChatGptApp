@@ -23,18 +23,14 @@ public class OkhttpUtil {
 //    private String url = "https://ai.fakeopen.com/api/conversation";
 //
 //    public static String apiKey = "1";
-    private String apiKey = "pk-fCTNqrQIWZTAwypRpqfBCBajxDJPRPMZZLkraUxkxzHcmSJY";
+    private static String apiKey = "pk-fCTNqrQIWZTAwypRpqfBCBajxDJPRPMZZLkraUxkxzHcmSJY";
     private String url = "https://api.pawan.krd/v1/chat/completions";
-    private String model = "gpt-3.5-turbo";
+    private static String model = "gpt-3.5-turbo";
 //    public String prompt = "Human: Hello\\nAI:";
-    private double temperature = 0.7;
-    private int maxTokens = 1000;
+    private static double temperature = 0.7;
+    private static int maxTokens = 1000;
     private String contentSys = "Good Assistant";
     private String contentUsr = "Who are you?";
-
-    public OkhttpUtil(){
-        setApiKey("pk-fCTNqrQIWZTAwypRpqfBCBajxDJPRPMZZLkraUxkxzHcmSJY");
-    }
 
     public void ipConfig(Callback newCallback) {
         HttpLoggingInterceptor httpLoggingInterceptor =
@@ -105,8 +101,8 @@ public class OkhttpUtil {
         client.newCall(request).enqueue(newCallback);
     }
 
-    public void setApiKey(String apiKey) {
-        this.apiKey = apiKey;
+    public static void setApiKey(String apiKey) {
+        apiKey = apiKey;
     }
 
     public void setFirstContent(String firstContent) {
@@ -123,16 +119,16 @@ public class OkhttpUtil {
         this.contentUsr = contentUsr;
     }
 
-    public void setMaxTokens(int maxTokens) {
-        this.maxTokens = maxTokens;
+    public static void setMaxTokens(int maxTokens) {
+        maxTokens = maxTokens;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public static void setModel(String model) {
+        model = model;
     }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
+    public static void setTemperature(double temperature) {
+        temperature = temperature;
     }
 
     //    public String getFirstContent() {

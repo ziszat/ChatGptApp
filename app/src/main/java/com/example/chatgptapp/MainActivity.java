@@ -217,11 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call call, Response response) throws IOException {
                     String str = response.body().string();
                     Log.i("Response Content", str);
-//                        str = str.replaceFirst("^(\n)+", "")
-//                                .replace("```", "")
-//                                .replaceFirst("^(\\{AI\\}\n)+", "")
-//                                .replace("{AI}", "")
-//                                .replace("{/AI}", "");
+
                     int startIndex = str.indexOf("\"content\":\"") + "\"content\":\"".length();
                     int endIndex = str.indexOf(",\"role", startIndex) - 1;
 
