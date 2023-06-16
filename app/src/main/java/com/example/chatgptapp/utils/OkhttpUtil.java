@@ -1,6 +1,7 @@
 package com.example.chatgptapp.utils;
 
-import android.util.Log;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -14,7 +15,6 @@ public class OkhttpUtil {
     private String url = "https://api.pawan.krd/v1/chat/completions";
     private static String model = "gpt-3.5-turbo";
 
-    public String prompt = "Human: Hello\\nAI:";
     private static double temperature = 0.7;
     private static int maxTokens = 1000;
     private String contentSys = "Good Assistant";
@@ -27,13 +27,12 @@ public class OkhttpUtil {
                 .addInterceptor(httpLoggingInterceptor);
         OkHttpClient client = builder.build();
 
-        Log.d("api key",apiKey);
         MediaType ip_mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create("", ip_mediaType);
         Request ipRequest = new Request.Builder()
                 .url("https://api.pawan.krd/resetip")
-                .header("Authorization", "Bearer " + apiKey)
                 .post(body)
+                .addHeader("Authorization", "Bearer " + apiKey)
                 .build();
 
         client.newCall(ipRequest).enqueue(newCallback);
@@ -41,30 +40,68 @@ public class OkhttpUtil {
 
     public void doPost(Callback newCallback) {
 
+        try {
+            HttpLoggingInterceptor httpLoggingInterceptor =
+                    new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
+            OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                    .addInterceptor(httpLoggingInterceptor);
+            OkHttpClient client = builder.build();
 
-        HttpLoggingInterceptor httpLoggingInterceptor =
-                new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
-        OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .addInterceptor(httpLoggingInterceptor);
-        OkHttpClient client = builder.build();
+            MediaType mediaType = MediaType.parse("application/json");
 
-        MediaType mediaType = MediaType.parse("application/json");
+            JSONObject json = new JSONObject();
+            json.put("model", model);
+            json.put("max_tokens", maxTokens);
 
-        String requestBodyJSON = "{ \n  \"model\": \"" + model + "\",\n \"max_tokens\": " + maxTokens + ",\n    \"messages\":\n [\n     {\n         \"role\": \"system\",\n         \"content\": \"" + contentSys + "\"\n       },\n        {\n         \"role\": \"user\",\n           \"content\": \"" + contentUsr + "\"\n       }\n ], \"temperature\": " + temperature + " \n}";
+            JSONArray messages = new JSONArray();
 
-        Log.i("Request body json", requestBodyJSON);
-        RequestBody requestBody = RequestBody.create(requestBodyJSON, mediaType);
+            JSONObject systemMessage = new JSONObject();
+            systemMessage.put("role", "system");
+            systemMessage.put("content", contentSys);
+            messages.put(systemMessage);
 
-        Request request = new Request.Builder()
-                .url(url)
-                .post(requestBody)
-                .addHeader("Authorization", "Bearer " + apiKey)
-                .addHeader("Content-Type", "application/json")
-                .build();
+            JSONObject userMessage = new JSONObject();
+            userMessage.put("role", "user");
+            userMessage.put("content", contentUsr);
+            messages.put(userMessage);
 
-//        Log.d("Post a msg ",requestBody.toString());
-        client.newCall(request).enqueue(newCallback);
+            json.put("messages", messages);
+            String jsonString = json.toString();
+
+            RequestBody requestBody = RequestBody.create(jsonString, mediaType);
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .addHeader("Authorization", "Bearer " + apiKey)
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+
+            client.newCall(request).enqueue(newCallback);
+
+        } catch (Exception e) {
+            // Handle exception here
+        }
     }
+
+    
+    public static String getGptAnswer(String response){
+        try {
+            JSONObject json = new JSONObject(response);
+
+            JSONArray choices = json.getJSONArray("choices");
+            if (choices.length() > 0) {
+                JSONObject choice = choices.getJSONObject(0);
+                JSONObject message = choice.getJSONObject("message");
+                String content = message.getString("content");
+                return content;
+            }
+        }
+        catch (Exception e){
+            return "暂时没有结果";
+        }
+        return "";
+    } 
 
     public static void setApiKey(String apiKey) {
         apiKey = apiKey;
@@ -74,7 +111,9 @@ public class OkhttpUtil {
         this.contentUsr = contentUsr;
     }
 
-
+    public void setContentSys(String contentSys) {
+        this.contentSys = contentSys;
+    }
 
     public static void setMaxTokens(int maxTokens) {
         maxTokens = maxTokens;

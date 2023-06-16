@@ -1,0 +1,16 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/design_default_color_secondary" /> <!-- Set the desired color for the filled button -->
+            <stroke android:color="@color/black" android:width="2dp" /> <!-- Set the desired color and width for the border -->
+            <corners android:radius="8dp" /> <!-- Set the desired corner radius -->
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/light" /> <!-- Set the desired color for the unfilled button -->
+            <stroke android:color="@color/white" android:width="2dp" /> <!-- Set the desired color and width for the border -->
+            <corners android:radius="8dp" /> <!-- Set the desired corner radius -->
+        </shape>
+    </item>
+</selector>

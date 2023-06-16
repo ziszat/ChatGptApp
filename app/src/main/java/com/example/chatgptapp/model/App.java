@@ -16,12 +16,12 @@ public class App {
 
     private String name;
     private int imageResId;
-    private Class view;
+    private Class classView;
 
     public App(String name, int imageResId, Class a) {
         this.name = name;
         this.imageResId = imageResId;
-        this.view = a;
+        this.classView = a;
     }
 
 
@@ -33,7 +33,7 @@ public class App {
         return imageResId;
     }
 
-    public Class getView() {
-        return view;
+    public Class getClassView() {
+        return classView;
     }
 }

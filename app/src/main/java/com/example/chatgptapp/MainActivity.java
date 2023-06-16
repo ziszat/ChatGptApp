@@ -1,5 +1,6 @@
 package com.example.chatgptapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         frameLayout.addView(chatView.Load(this));
     }
 
-    private void loadAppActivity() {
+    public void loadAppActivity() {
 
         frameLayout.removeAllViews();
         frameLayout.addView(AppView.Load(this));
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             frameLayout.removeAllViews();
-            Object viewRes = appClass.getMethod("Load").invoke(null);
+            Object viewRes = appClass.getMethod("Load", Context.class).invoke(null, MainActivity.this);
             frameLayout.addView(((View) viewRes));
         }
         catch (NoSuchMethodException e){

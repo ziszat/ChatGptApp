@@ -1,7 +1,9 @@
 package com.example.chatgptapp.chatView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -9,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatgptapp.MainActivity;
@@ -41,8 +43,8 @@ public class ChatView {
     }
 
     private ChatViewAdapter chatViewAdapter;
+
     private RecyclerView recyclerView;
-    private static boolean ipConfig = false;
 
     public View Load(Context context) {
 
@@ -54,11 +56,9 @@ public class ChatView {
 
         initChatList();
 
-        Log.d("chatList inited", String.valueOf(chatList.get(0).getType()));
-
         recyclerView = chatView.findViewById(R.id.chat_recycler_View);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         chatViewAdapter = new ChatViewAdapter();
 
@@ -68,14 +68,23 @@ public class ChatView {
         SpeechToText speechToText = new SpeechToText(chatView.findViewById(R.id.search_input), chatView.findViewById(R.id.bt_voice_input), this);
 
         chatView.findViewById(R.id.bt_voice_input).setOnClickListener(v -> speechToText.checkPermissionAndStartSpeechRecognition(MainActivity.Instance));
+
+        chatView.findViewById(R.id.bt_send).setOnClickListener(v -> {
+            TextInputEditText textInput = chatView.findViewById(R.id.search_input);
+            String text = textInput.getText().toString();
+            chatList.add(new Msg(text, Msg.TYPE_SENT));
+            updateAndScroll();
+            sendMsg(text);
+            textInput.setText("");
+        });
         chatView.findViewById(R.id.search_input).setOnKeyListener(new View.OnKeyListener() {
             @Override
 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     TextInputEditText textInput = chatView.findViewById(R.id.search_input);
-                    String text=textInput.getText().toString();
-                    insertChatData(new Msg(text, Msg.TYPE_SENT));
+                    String text = textInput.getText().toString();
+                    chatList.add(new Msg(text, Msg.TYPE_SENT));
                     updateAndScroll();
                     sendMsg(text);
                     textInput.setText("");
@@ -84,18 +93,39 @@ public class ChatView {
                 return false; // Return false if you want to propagate the event further
             }
         });
+        chatView.findViewById(R.id.btn_delete_chat).setOnClickListener(v->showDeleteConfirmationDialog());
         updateAndScroll();
         return chatView;
     }
 
-    private void updateAndScroll(){
+
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.Instance);
+        builder.setTitle("Delete Confirmation");
+        builder.setMessage("Are you sure you want to delete?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Perform delete operation
+                sqlOperate.deleteAll();
+                chatList.clear();
+                updateAndScroll();
+            }
+        });
+        builder.setNegativeButton("No", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void updateAndScroll() {
 
         // Update the adapter
         chatViewAdapter.notifyDataSetChanged();
-        recyclerView.smoothScrollToPosition(chatViewAdapter.getItemCount() - 1);
-
+        if(chatViewAdapter.getItemCount()>0)
+            recyclerView.smoothScrollToPosition(chatViewAdapter.getItemCount() - 1);
+        else
+            recyclerView.smoothScrollToPosition(0);
     }
-
 
 
     public void sendMsg(String text) {
@@ -107,66 +137,69 @@ public class ChatView {
             OkhttpUtil okhttpUtil = new OkhttpUtil();
 
             okhttpUtil.setContentUsr(text);
+
             chatList.add(new Msg("正在加载，请等待......", Msg.TYPE_RECEIVED));
 
             updateAndScroll();
 
-            if (!ipConfig) {
-                okhttpUtil.ipConfig(new Callback() {
 
-                    @Override
-                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                        String str = response.body().string();
-                        Log.i("IP Response", str);
-                    }
-                });
-                ipConfig = true;
-                return;
-            }
-            okhttpUtil.doPost(new Callback() {
+            Callback gptCallBack = new Callback() {
                 @Override
-                public void onFailure(Call call, IOException e) {
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
                     chatList.remove(chatList.size() - 1);
-                    insertChatData(new Msg("AI回复失败，请重试......", Msg.TYPE_RECEIVED));
+
+                    chatList.add(new Msg("AI回复失败，请重试......", Msg.TYPE_RECEIVED));
+
                     MainActivity.Instance.runOnUiThread(() -> {
                         updateAndScroll();
                     });
                 }
 
                 @Override
-                public void onResponse(Call call, Response response) throws IOException {
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                     String str = response.body().string();
                     Log.i("Response Content", str);
 
-                    int startIndex = str.indexOf("\"content\":\"") + "\"content\":\"".length();
-                    int endIndex = str.indexOf(",\"role", startIndex) - 1;
-
-                    String content = str.substring(startIndex, endIndex);
+                    String content = OkhttpUtil.getGptAnswer(str);
 
 
                     chatList.remove(chatList.size() - 1);
-                    insertChatData(new Msg(content, Msg.TYPE_RECEIVED));
+                    storeChatData(chatList.get(chatList.size() - 1));
+                    storeChatData(new Msg(content, Msg.TYPE_RECEIVED));
+                    chatList.add(new Msg(content, Msg.TYPE_RECEIVED));
                     MainActivity.Instance.runOnUiThread(() -> {
                         updateAndScroll();
                     });
                 }
-            });
+            };
+            Callback requestIpCallback = new Callback() {
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                    String ipRes = response.body().string();
+                    Log.i("IP Response", ipRes);
+                    okhttpUtil.doPost(gptCallBack);
+                }
+            };
+
+            okhttpUtil.ipConfig(requestIpCallback);
+
+
         }
 
 
     }
 
-    public void insertChatData(Msg msg) {
-        chatList.add(msg);
+    public void storeChatData(Msg msg) {
         sqlOperate.insert(msg.getType(), msg.getContent());
     }
 
     public void initChatList() {
+        chatList.clear();
         Cursor cursor = sqlOperate.query();
         if (cursor.moveToFirst()) {
             do {

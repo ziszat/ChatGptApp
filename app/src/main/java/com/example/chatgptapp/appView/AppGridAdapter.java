@@ -62,7 +62,7 @@ public class AppGridAdapter extends RecyclerView.Adapter<AppGridAdapter.AppGridV
             appButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity.Instance.loadSingleAppActivity(app.getView());
+                    MainActivity.Instance.loadSingleAppActivity(app.getClassView());
                 }
             });
         }

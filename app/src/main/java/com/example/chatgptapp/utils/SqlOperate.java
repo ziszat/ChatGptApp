@@ -38,4 +38,30 @@ public class SqlOperate {
             db.insert("chatList", null, contentValues);
         }
     }
+
+    /**
+     * 删除指定类型和内容的数据
+     */
+    public void delete(int type, String content) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //确保数据库打开，安全操作
+        if (db.isOpen()) {
+            String selection = "type = ? AND content = ?";
+            String[] selectionArgs = {String.valueOf(type), content};
+            db.delete("chatList", selection, selectionArgs);
+        }
+    }
+
+    /**
+     * 删除所有数据
+     */
+    public void deleteAll() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //确保数据库打开，安全操作
+        if (db.isOpen()) {
+            db.delete("chatList", null, null);
+        }
+    }
+
+
 }
