@@ -2,37 +2,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#F7F7F7">
 
     <!-- Profile Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="个人"
+        android:text="我的"
         android:textSize="24sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp" />
+        android:textColor="#000000"
+        android:layout_gravity="start"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif-condensed" />
 
     <!-- Avatar and Username -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
+        android:gravity="start|center_vertical"
         android:layout_marginBottom="16dp">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/avatar_image"
+            android:src="@mipmap/avatar_image"
             android:scaleType="centerCrop"
-            android:layout_marginEnd="16dp" />
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/circle_background" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Username"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif" />
 
     </LinearLayout>
 
@@ -48,6 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="设置"
+            android:textColor="#000000"
+            android:background="#FFFFFF"
             android:layout_marginBottom="8dp" />
 
         <!-- About Us -->
@@ -56,6 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="关于我们"
+            android:textColor="#000000"
+            android:background="#FFFFFF"
             android:layout_marginBottom="8dp" />
 
         <!-- Rate the App -->
@@ -63,7 +73,9 @@
             android:id="@+id/rate_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="帮助" />
+            android:text="帮助"
+            android:textColor="#000000"
+            android:background="#FFFFFF" />
 
     </LinearLayout>
 

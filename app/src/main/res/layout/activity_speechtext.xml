@@ -6,7 +6,7 @@
     <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ChatView">
+        tools:context=".chatView.ChatView">
 
         <Button
             android:id="@+id/btn_speech_to_text"

@@ -1,10 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000080">
+    android:background="@color/purple_200"
+    android:padding="8dp">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/app_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

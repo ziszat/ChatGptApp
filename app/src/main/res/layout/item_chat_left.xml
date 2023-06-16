@@ -2,19 +2,35 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp" >
+    >
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:background="@mipmap/bg_chat_left">
-        <TextView
-            android:id="@+id/leftMsg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:textIsSelectable="true"
-            android:textColor="#fff" />
+            android:background="@mipmap/ic_robot" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:background="@mipmap/bg_chat_left">
+
+            <TextView
+                android:id="@+id/leftMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:textColor="#fff"
+                android:textIsSelectable="true" />
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

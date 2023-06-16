@@ -1,10 +1,11 @@
 package com.example.chatgptapp;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.chatgptapp.chatView.ChatView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -57,7 +59,13 @@ public class SpeechToText  {
         Intent recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "zh-CN");
-        button.setBackgroundColor(Color.blue(1));
+
+        // Load the animation from the XML file
+        Animator scaleAnimation = AnimatorInflater.loadAnimator(activity, R.animator.scale_animation);
+
+        scaleAnimation.setTarget(button);
+        scaleAnimation.start();
+
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
             private long lastSpeechTime = 0;
             private final Handler handler = new Handler();
@@ -128,8 +136,12 @@ public class SpeechToText  {
                     speechRecognizer.stopListening();
                     speechRecognizer.cancel();
                     speechRecognizer.destroy();
-                    button.setBackgroundColor(Color.rgb(200,200,200));
-                     
+
+                    scaleAnimation.cancel();
+                    button.setScaleX(1.0f);
+                    button.setScaleY(1.0f);
+                    button.setRotation(0);
+
                     Log.d("SpeechRecognition", "Speech recognition end: SILENCE TIMEOUT");
 
                 } else {

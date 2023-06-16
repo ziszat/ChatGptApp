@@ -10,16 +10,11 @@ import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class OkhttpUtil {
-    private String firstContent = "";
-    private String received = "";
-    private String newContent = "";
-    //    private String url = "https://ai.fakeopen.com/api/conversation";
-//
-//    public static String apiKey = "1";
     private static String apiKey = "pk-fCTNqrQIWZTAwypRpqfBCBajxDJPRPMZZLkraUxkxzHcmSJY";
     private String url = "https://api.pawan.krd/v1/chat/completions";
     private static String model = "gpt-3.5-turbo";
-    //    public String prompt = "Human: Hello\\nAI:";
+
+    public String prompt = "Human: Hello\\nAI:";
     private static double temperature = 0.7;
     private static int maxTokens = 1000;
     private String contentSys = "Good Assistant";
@@ -32,6 +27,7 @@ public class OkhttpUtil {
                 .addInterceptor(httpLoggingInterceptor);
         OkHttpClient client = builder.build();
 
+        Log.d("api key",apiKey);
         MediaType ip_mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create("", ip_mediaType);
         Request ipRequest = new Request.Builder()
@@ -46,8 +42,6 @@ public class OkhttpUtil {
     public void doPost(Callback newCallback) {
 
 
-        contentUsr = newContent;
-
         HttpLoggingInterceptor httpLoggingInterceptor =
                 new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
@@ -56,9 +50,7 @@ public class OkhttpUtil {
 
         MediaType mediaType = MediaType.parse("application/json");
 
-        String requestBodyJSON = "{ \n  \"model\": \"" + model
-                + "\",\n \"max_tokens\": " + maxTokens
-                + ",\n    \"messages\":\n [\n     {\n         \"role\": \"system\",\n         \"content\": \"" + contentSys + "\"\n       },\n        {\n         \"role\": \"user\",\n           \"content\": \"" + contentUsr + "\"\n       }\n ], \"temperature\": " + temperature + " \n}";
+        String requestBodyJSON = "{ \n  \"model\": \"" + model + "\",\n \"max_tokens\": " + maxTokens + ",\n    \"messages\":\n [\n     {\n         \"role\": \"system\",\n         \"content\": \"" + contentSys + "\"\n       },\n        {\n         \"role\": \"user\",\n           \"content\": \"" + contentUsr + "\"\n       }\n ], \"temperature\": " + temperature + " \n}";
 
         Log.i("Request body json", requestBodyJSON);
         RequestBody requestBody = RequestBody.create(requestBodyJSON, mediaType);
@@ -78,21 +70,11 @@ public class OkhttpUtil {
         apiKey = apiKey;
     }
 
-    public void setFirstContent(String firstContent) {
-        this.firstContent = firstContent;
-    }
-
-    public void setNewContent(String newContent) {
-        this.newContent = newContent;
-    }
-
-    public void setReceived(String received) {
-        this.received = received;
-    }
-
     public void setContentUsr(String contentUsr) {
         this.contentUsr = contentUsr;
     }
+
+
 
     public static void setMaxTokens(int maxTokens) {
         maxTokens = maxTokens;
@@ -106,19 +88,5 @@ public class OkhttpUtil {
         temperature = temperature;
     }
 
-    //    public String getFirstContent() {
-//        return firstContent;
-//    }
-//
-//    public String getNewContent() {
-//        return newContent;
-//    }
 
-//    public String getReceived() {
-//        return received;
-//    }
-
-    public String getUrl() {
-        return url;
-    }
 }

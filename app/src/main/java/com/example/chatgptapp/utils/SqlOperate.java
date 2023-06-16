@@ -10,7 +10,7 @@ public class SqlOperate {
     private MyDatabaseHelper dbHelper;
 
     public SqlOperate() {
-        dbHelper = new MyDatabaseHelper("database.db", 1);
+        dbHelper = new MyDatabaseHelper("chat.db", 1);
     }
 
     /**

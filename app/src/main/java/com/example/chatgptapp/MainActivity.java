@@ -1,13 +1,19 @@
 package com.example.chatgptapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.chatgptapp.appView.AppView;
+import com.example.chatgptapp.chatView.ChatView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         Instance =this;
 
         setContentView(R.layout.activity_main);
+
+        // Check if the required permissions are granted
+        AppPermission.requestPermissions(this);
 
 
         chatView=new ChatView();
@@ -88,5 +97,22 @@ public class MainActivity extends AppCompatActivity {
         frameLayout.addView(HelpView.Load(this));
     }
 
+    public void loadSingleAppActivity(Class appClass) {
+        try {
+
+
+            frameLayout.removeAllViews();
+            Object viewRes = appClass.getMethod("Load").invoke(null);
+            frameLayout.addView(((View) viewRes));
+        }
+        catch (NoSuchMethodException e){
+            Log.e("NoSuchMethodException","exec app "+appClass.toString());
+        } catch (InvocationTargetException e) {
+            Log.e("NoSuchMethodException","exec app "+appClass.toString());
+        } catch (IllegalAccessException e) {
+            Log.e("NoSuchMethodException","exec app "+appClass.toString());
+        }
+
+    }
 
 }

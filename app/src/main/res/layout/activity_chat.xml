@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ChatView">
+    tools:context=".chatView.ChatView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/con_top"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="25dp"
         android:layout_weight="1"
         android:background="@color/design_default_color_primary">
 
@@ -29,7 +29,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/chat_recycler_View"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
@@ -42,7 +42,6 @@
         android:padding="18dp">
 
         <LinearLayout
-            android:id="@+id/ll_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
