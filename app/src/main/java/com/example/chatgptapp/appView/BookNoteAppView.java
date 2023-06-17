@@ -1,6 +1,8 @@
 package com.example.chatgptapp.appView;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,7 +47,13 @@ public class BookNoteAppView {
                 String str = response.body().string();
                 Log.i("Response Content", str);
 
-                res.setText(OkhttpUtil.getGptAnswer(str));
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        res.setText(OkhttpUtil.getGptAnswer(str));
+                    }
+                });
             }
         };
 
