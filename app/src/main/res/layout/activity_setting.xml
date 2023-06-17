@@ -39,210 +39,175 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_weight="1" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="14"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical">
 
-        <TableLayout
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TableRow
+            <TextView
+                android:id="@+id/tv_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Api Key:"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/ed_key"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp">
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_ed_content"
+                android:hint="如果没有ApiKey则不要修改此项"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="2dp"
+                android:textSize="15sp" />
+        </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="8"
-                    android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-                    <TextView
-                        android:id="@+id/tv_key"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="15dp"
-                        android:text="Api Key:"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tv_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="模型:"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
 
-                    <EditText
-                        android:id="@+id/ed_key"
-                        android:layout_width="261dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_ed_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="2dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="2dp"
-                        android:text="如果没有ApiKey则不要修改此项"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
+            <Spinner
+                android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp">
+                android:layout_height="50dp"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
 
-                    <TextView
-                        android:id="@+id/tv_model"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="15dp"
-                        android:text="模型:"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                android:dropDownVerticalOffset="45dp"
+                android:entries="@array/spinner_data"
+                android:paddingStart="20dp"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
 
-<!--                    <EditText-->
-<!--                        android:id="@+id/ed_model"-->
-<!--                        android:layout_width="278dp"-->
-<!--                        android:layout_height="50dp"-->
-<!--                        android:layout_marginLeft="40dp"-->
-<!--                        android:layout_marginTop="12dp"-->
-<!--                        android:layout_marginRight="10dp"-->
-<!--                        android:background="@drawable/bg_ed_content"-->
-<!--                        android:paddingLeft="10dp"-->
-<!--                        android:paddingTop="2dp"-->
-<!--                        android:paddingRight="10dp"-->
-<!--                        android:paddingBottom="2dp"-->
-<!--                        android:text="gpt-3.5-turbo"-->
-<!--                        android:textSize="15sp" />-->
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="284dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="45dp"
-                        android:layout_marginTop="12dp"
+            <TextView
+                android:id="@+id/tv_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="创造性:"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
 
-                        android:dropDownVerticalOffset="45dp"
-                        android:entries="@array/spinner_data"
-
-                        android:spinnerMode="dropdown" />
-
-
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
+            <SeekBar
+                android:id="@+id/seekBar"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp">
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:max="10"
+                android:progress="7" />
+        </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-                    <TextView
-                        android:id="@+id/tv_temperature"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="15dp"
-                        android:text="创造性:"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tv_maxToken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="最大Token:\n(0-5000)"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-                    <SeekBar
-                        android:id="@+id/seekBar"
-                        style="@style/Widget.AppCompat.SeekBar.Discrete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="25dp"
-                        android:layout_weight="1"
-                        android:max="10"
-                        android:progress="7" />
+            <SeekBar
+                android:id="@+id/maxToken"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:max="10"
+                android:progress="7" />
+        </LinearLayout>
 
-                </LinearLayout>
-            </TableRow>
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp">
+            <Button
+                android:id="@+id/confirm_api"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_weight="1"
+                android:text="保存Api Key"
+                android:textSize="16sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+            <Button
+                android:id="@+id/confirm_others"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_weight="1"
+                android:text="保存其他设置"
+                android:textSize="16sp" />
+        </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_maxToken"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="15dp"
-                        android:text="最大Token:\n(0-5000)"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                    <SeekBar
-                        android:id="@+id/maxToken"
-                        style="@style/Widget.AppCompat.SeekBar.Discrete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="35dp"
-                        android:layout_weight="1"
-                        android:max="10"
-                        android:progress="7" />
-
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/confirm_api"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="15dp"
-                        android:layout_marginTop="25dp"
-                        android:layout_weight="1"
-                        android:text="保存Api Key" />
-
-                    <Button
-                        android:id="@+id/confirm_others"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:layout_weight="1"
-                        android:text="保存其他设置" />
-                </LinearLayout>
-            </TableRow>
-
-    </TableLayout>
-
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

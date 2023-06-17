@@ -70,6 +70,7 @@
                     android:layout_height="47dp"
                     android:gravity="bottom"
                     android:hint="@string/search_hint"
+                    android:singleLine="false"
                     android:text=""
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
