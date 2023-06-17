@@ -142,7 +142,6 @@ public class ChatView {
 
             updateAndScroll();
 
-
             Callback gptCallBack = new Callback() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -172,7 +171,8 @@ public class ChatView {
                     });
                 }
             };
-            Callback requestIpCallback = new Callback() {
+
+            Callback requestIPCallback = new Callback() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
@@ -186,9 +186,7 @@ public class ChatView {
                 }
             };
 
-            okhttpUtil.ipConfig(requestIpCallback);
-
-
+            okhttpUtil.ipConfig(requestIPCallback);
         }
 
 
