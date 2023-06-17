@@ -38,4 +38,5 @@
     </style>
     <style name="Theme.ChatGptApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.ChatGptApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

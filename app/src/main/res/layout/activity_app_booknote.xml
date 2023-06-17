@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@color/purple_200">
+        android:background="@color/light_blue">
 
         <!-- Back Button -->
         <ImageView

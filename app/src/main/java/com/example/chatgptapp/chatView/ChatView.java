@@ -101,9 +101,9 @@ public class ChatView {
 
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.Instance);
-        builder.setTitle("Delete Confirmation");
-        builder.setMessage("Are you sure you want to delete?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle("确认删除");
+        builder.setMessage("你确定要删除聊天记录吗?");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Perform delete operation
@@ -112,7 +112,7 @@ public class ChatView {
                 updateAndScroll();
             }
         });
-        builder.setNegativeButton("No", null);
+        builder.setNegativeButton("取消", null);
         AlertDialog dialog = builder.create();
         dialog.show();
     }

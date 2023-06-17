@@ -49,11 +49,12 @@
             android:layout_height="wrap_content"
             android:text="Api Key获取方式：\n1. 加入Discord服务器：PawanOsman\n2. 进入`#Bot`频道并发送`/key`\n命令以获取你个人的Api Key\n3. 将你的Api Key在应用中设置"
             android:textColor="#3F51B5"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteY="210dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
