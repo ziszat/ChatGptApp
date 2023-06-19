@@ -44,7 +44,7 @@ public class StoryAppView {
         briefBtn.setSelected(true);
 
         briefBtn.setOnClickListener(v -> {
-            storyLength = "brief";
+            storyLength = "very short";
             briefBtn.setSelected(true);
             middleBtn.setSelected(false);
             longBtn.setSelected(false);

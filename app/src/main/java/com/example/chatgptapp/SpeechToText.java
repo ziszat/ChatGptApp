@@ -64,6 +64,32 @@ public class SpeechToText  {
         Animator scaleAnimation = AnimatorInflater.loadAnimator(activity, R.animator.scale_animation);
 
         scaleAnimation.setTarget(button);
+
+        scaleAnimation.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+                // Animation started
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                // Animation ended
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                // Animation canceled
+                button.setScaleX(1.0f);
+                button.setScaleY(1.0f);
+                button.setRotation(0);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+                // Animation repeated
+            }
+        });
+
         scaleAnimation.start();
 
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
@@ -73,13 +99,14 @@ public class SpeechToText  {
                 @Override
                 public void run() {
                     checkForSilence();
+                    handler.postDelayed(silenceRunnable, 1000);
                 }
             };
 
             @Override
             public void onReadyForSpeech(Bundle params) {
                 lastSpeechTime = System.currentTimeMillis();
-                handler.postDelayed(silenceRunnable, 100); // seconds delay before the first silence check
+                handler.postDelayed(silenceRunnable, 1000); // seconds delay before the first silence check
             }
 
             @Override
@@ -121,6 +148,8 @@ public class SpeechToText  {
             public void onResults(Bundle results) {
                 // Called when the final recognition results are available
                 ArrayList<String> result = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                if(result.get(0).length()>text.getText().length())
+                    text.setText(result.get(0));
                 Log.d("SpeechRecognition", "Recognized text: " + result.get(0));
             }
 
@@ -144,9 +173,6 @@ public class SpeechToText  {
 
                     Log.d("SpeechRecognition", "Speech recognition end: SILENCE TIMEOUT");
 
-                } else {
-                    // If not timed out, schedule the next check
-                    handler.postDelayed(silenceRunnable, 100);
                 }
             }
         });
