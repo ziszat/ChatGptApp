@@ -1,12 +1,25 @@
-# ChatGPTAPP
-- ### 程序介绍
+# FreeChat
 
-这是一个调用openai的gpt接口的安卓应用程序，可以通过发送消息与ai对话，此程序仅供学习使用。
+zju2023移动平台开发技术大程，谢绝抄袭
+ -- CZL LJX
 
-- ### 功能介绍
+#
 
-对话功能：通过发送消息等待Ai回复，需要网络连接，对话记录会存储在手机本地
+### 程序逻辑
 
-![](https://github.com/CatOfSilence/ChatGPTAPP/blob/master/img/%E8%81%8A%E5%A4%A9%E6%BC%94%E7%A4%BA.gif)
+FreeChat 是一款创新的语音驱动聊天助手应用，旨在为用户提供免费、便捷且无需翻墙的聊天体验，并且结合强大的 ChatGPT 技术和语音输入功能。此外，FreeChat 还提供了一系列基于ChatGPT 的小应用，如故事创作和阅读书签，以及对聊天机器人参数的个性化调节，为用户带来全新的问答体验。
 
-commit test
+
+#
+
+### 程序界面
+
+
+![image](https://github.com/ziszat/ChatGptApp/assets/82871660/51ea9dee-c3a2-4456-b8d6-d9af008fe3cf)
+
+
+![image](https://github.com/ziszat/ChatGptApp/assets/82871660/c5aa57b8-5e62-4673-aac2-6793c41c46ce)
+![image](https://github.com/ziszat/ChatGptApp/assets/82871660/cfd55582-0ddc-42ca-9543-1974ed376283)
+
+
+![image](https://github.com/ziszat/ChatGptApp/assets/82871660/395119cd-6703-4780-985f-12fefd233db0)
